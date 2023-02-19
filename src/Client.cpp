@@ -14,34 +14,34 @@ Client::~Client()
 //seters
 void Client::SetNickname(const std::string& nickname)
 {
-    this->nickname = nickname;
+    m_nickname = nickname;
 }
 
 void Client::SetUsername(const std::string& username)
 {
-    this->username = username;    
+    m_username = username;    
 }
 
 void Client::SetRealname(const std::string& realname)
 {
-    this->realname = realname;
+    m_realname = realname;
 }
 
 //Getters
 
 std::string Client::GetNickname() const
 {
-    return this->nickname;    
+    return m_nickname;    
 }
 
 std::string Client::GetUsername() const
 {
-    return this->username;
+    return m_username;
 }
 
 std::string Client::GetRealname() const
 {
-    return this->realname;
+    return m_realname;
 }
 
 
