@@ -5,36 +5,40 @@
 
 class Command
 {
-private:
-public:
+    private:
+    public:
 };
 
 class MessageCommand : Command
 {
-    MessageCommand();
-    ~MessageCommand();
-    void exec(std::string arg);
+    public:
+        MessageCommand();
+        ~MessageCommand();
+        void exec(std::string arg);
 };
 
 class JoinCommand : Command
 {
-    JoinCommand();
-    ~JoinCommand();
-    void exec(std::string arg);
+    public:
+        JoinCommand();
+        ~JoinCommand();
+        void exec(std::string arg);
 };
 
 class LeaveCommand : Command
 {
-    LeaveCommand();
-    ~LeaveCommand();
-    void exec(std::string arg);
+    public:
+        LeaveCommand();
+        ~LeaveCommand();
+        void exec(std::string arg);
 };
 
 class ListCommand : Command
 {
-    ListCommand();
-    ~ListCommand();
-    void exec(std::string arg);
+    public:
+        ListCommand();
+        ~ListCommand();
+        void exec(std::string arg);
 };
 
 #endif
