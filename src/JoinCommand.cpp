@@ -8,32 +8,32 @@ void JoinCommand::exec(Client *client, std::vector<std::string> args)
 {
     if (args.empty())
     {
-        client->smth(ERR_NEEDMOREPARAMS(client->smth(), "PASS"));
+        client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "PASS"));
         return;
     }
 
     std::string name = args[0];
     std::string pass = args[1];
 
-    Channel *channel = client->smth();
+    Channel *channel = client->getChannel();
     if (channel)
     {
-        client->smth(ERR_TOOMANYCHANNELS(client->smth(), name));
+        client->reply(ERR_TOOMANYCHANNELS(client->getNickname(), name));
         return;
     }
-    channel = _server->smth(name);
+    channel = _server->getChannel(name);
     if (!channel)
         channel = _server->createChannel(name, pass, client);
 
     if (channel->maxClients() > 0 && channel->numofClients() >= channel->maxClients())
     {
-        client->smth(ERR_CHANNELISFULL(client->smth(), name));
+        client->reply(ERR_CHANNELISFULL(client->getNickname(), name));
         return;
     }
 
     if (channel->getPass() != pass)
     {
-        client->smth(ERR_BADCHANNELKEY(client->smth(), name));
+        client->reply(ERR_BADCHANNELKEY(client->getNickname(), name));
         return;
     }
 

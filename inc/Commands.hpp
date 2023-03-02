@@ -11,19 +11,21 @@ class Command
 private:
 protected:
     Server *_server;
+    bool _authRequired;
 
 public:
     explicit Command(Server *server) : _server(server){};
     virtual ~Command(){};
 
-    virtual void exec(Client *client, std::vector<std::string> args) = 0
+    virtual void exec(Client *client, std::vector<std::string> args) = 0;
+    bool authRequired() const { return _authRequired; };
 };
 
-class MessageCommand : public Command
+class PrivMsgCommand : public Command
 {
 public:
-    MessageCommand();
-    ~MessageCommand();
+    PrivMsgCommand(Server *server);
+    ~PrivMsgCommand();
     void exec(Client *client, std::vector<std::string> args);
 };
 
@@ -35,12 +37,30 @@ public:
     void exec(Client *client, std::vector<std::string> args);
 };
 
-class LeaveCommand : public Command
+class QuitCommand : public Command
 {
 public:
-    LeaveCommand(Server *server);
-    ~LeaveCommand();
+    QuitCommand(Server *server, bool authRequired);
+    ~QuitCommand();
     void exec(Cliet *client, std::vector<std::string> args);
+};
+
+class NickCommand : public Command
+{
+public:
+    NickCommand(Server *server, bool authRequired);
+    ~NickCommand();
+
+    void exec(Client *client, std::vector<std::string> arguments);
+};
+
+class ModeCommand : public Command
+{
+public:
+    ModeCommand(Server *server);
+    ~ModeCommand();
+
+    void exec(Client *client, std::vector<std::string> arguments);
 };
 
 #endif
