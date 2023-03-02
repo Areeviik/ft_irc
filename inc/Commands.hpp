@@ -81,4 +81,22 @@ public:
     void exec(Client *client, std::vector<std::string> arguments);
 };
 
+class PingCommand : public Command
+{
+public:
+    PingCommand(Server *server);
+    ~PingCommand();
+
+    void exec(Client *client, std::vector<std::string> arguments);
+};
+
+class PongCommand : public Command
+{
+public:
+    PongCommand(Server *server);
+    ~PongCommand();
+
+    void exec(Client *client, std::vector<std::string> arguments);
+};
+
 #endif

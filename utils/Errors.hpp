@@ -17,5 +17,6 @@
 #define ERR_NICKNAMEINUSE(src) "433 " + src + " " + src  + " ~Nickname already exists"
 #define ERR_ALREADYREGISTERED(src) "462 " + src + " ~User already registered!"
 #define ERR_PASSWDMISMATCH(src) "464 " + src + " ~Incorrect password!"
+#define RPL_PING(src, token) ":" + src + " PONG :" + token
 
 #endif
