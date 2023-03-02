@@ -15,5 +15,7 @@
 #define ERR_NOSUCHNICK(src, username) "401 " + src + " " + username + " ~The nickname doesn't exist"
 #define ERR_NONICKNAMEGIVEN(src) "431 " + src + " ~Please provide a nickname"
 #define ERR_NICKNAMEINUSE(src) "433 " + src + " " + src  + " ~Nickname already exists"
+#define ERR_ALREADYREGISTERED(src) "462 " + src + " ~User already registered!"
+#define ERR_PASSWDMISMATCH(src) "464 " + src + " ~Incorrect password!"
 
 #endif

@@ -1,18 +1,15 @@
 #include "../inc/Commands.hpp"
 
-PrivMsgCommand::PrivMsgCommand(Server *server) : Command(server){};
+NoticeCommand::NoticeCommand(Server *server) : Command(server){};
 
-PrivMsgCommand::~PrivMsgCommand(){};
+NoticeCommand::~NoticeCommand(){};
 
-void PrivMsgCommand::exec(Client *client, std::vector<std::string> args)
+void NoticeCommand::exec(Client *client, std::vector<std::string> args)
 {
     std::string msg;
     std::string point = args.at(0);
     if (args[0].empty() || args[1].empty() || args.size() != 2)
-    {
-        client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "MESSAGE"));
         return;
-    }
 
     for (std::vector<std::string>::iterator it = args.begin() + 1; it != args.end(); it++)
         msg.append(*it + " ");
@@ -24,10 +21,7 @@ void PrivMsgCommand::exec(Client *client, std::vector<std::string> args)
     {
         Channel *channel = client->getChannel();
         if (!channel)
-        {
-            client->reply(ERR_NOSUCHCHANNEL(channel->getNickname(), point));
             return;
-        }
 
         if (channel->isNoExt())
         {
@@ -49,10 +43,7 @@ void PrivMsgCommand::exec(Client *client, std::vector<std::string> args)
 
     Client *dest = _server->getClient(point);
     if (!dest)
-    {
-        client->reply(ERR_NOSUCHNICK(client->getNickname(), point));
         return;
-    }
 
     dest->write(RPL_PRIVMSG(client->getPrefix(), point, msg))
 }
