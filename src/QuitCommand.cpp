@@ -12,5 +12,5 @@ void QuitCommand::exec(Client *client, std::vector<std::string> args)
         reason = args.at(0);
     if (reason.at(0) == ':')
         reason = reason.substr(1);
-    client->print(RPL_QUIT(client->getPrefx(), reason));
+    client->reply(RPL_QUIT(client->getPrefx(), reason));
 }

@@ -17,7 +17,7 @@ void UserCommand::exec(Client *client, std::vector<std::string> args)
         client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "USER"));
         return;
     }
-    client->setUsername(args[0]);
+    client->setNickname(args[0]);
     client->setRealName(args[3]);
     client->welcome();
 }

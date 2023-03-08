@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
+//include Server
 
 class CommandHandler
 {
@@ -15,7 +17,7 @@ private:
 public:
     CommandHandler(Server *server);
     ~CommandHandler();
-    void invoke(Client *client, const std::string &msg);
+    void parser(Client *client, const std::string &msg);
 }
 
 #endif
