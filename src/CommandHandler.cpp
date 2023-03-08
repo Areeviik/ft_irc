@@ -22,6 +22,11 @@ CommandHandler::~CommandHandler()
         delete it->second;
 }
 
+std::string CommandHandler::trim(const std::string& str)
+{
+    
+}
+
 CommandHandler::parser(Client *client, const std::string &msg)
 {
     std::stringstream ssMsg(msg);
