@@ -28,7 +28,7 @@ class Channel
     private:
     std::string m_name;
     std::string m_topic;
-    std::vector <Client*> clients;
+    std::vector <Client*> m_clients;
 
 };
 
