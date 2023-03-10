@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sys/poll.h>
+#include <sys/socket.h>
 #include "Channel.hpp"
 
 class Channel;
@@ -50,6 +52,8 @@ class Client
     void LeaveChannel(Channel* channel);
     void SendMessage(std::string message);
     void ReciveMessage(std::string message);
+    void reply(const std::string &message);
+    void write(const std::string &message);
     
     
     

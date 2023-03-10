@@ -31,12 +31,14 @@ std::string Channel::GetPassword() const
 }
 
 int Channel::GetNumberOfClients() const
-{ 
-    // get_number
+{
+    // get current number of clients
+    return m_clients.size();
 }
 
 int Channel::GetMaxClients() const
 {
+    //gett maximum size of clients
     return m_max_clients;
 }
 
@@ -84,6 +86,10 @@ void Channel::BroadcastMessage(const std::string& message)
 {
     //not sure how this should be work
     //brodcast message that will be shown all users.
+    for(std::vector<Client*>::iterator it = m_clients.begin();
+        it != m_clients.end();
+        it++)
+        (*it)->SendMessage(message);
 }
 
 void Channel::BrodcastMessage(const std::string& message, Client *client )

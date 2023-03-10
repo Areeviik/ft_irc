@@ -1,4 +1,5 @@
 #include "../inc/Client.hpp"
+#include "../utils.hpp"
 
 Client::Client(int fd, const std::string& hostname, int port)
 {
@@ -89,12 +90,25 @@ void Client::JoinChanel(Channel* channel)
 
 void Client::LeaveChannel(Channel* channel)
 {
-    //impl later    
+    //impl later
+
 }
 
-void Client::SendMessage(std::string message)
+void Client::write(const std::string& message) //it should be renamed to write
 {
-    //impl later
+    //send message impl
+    std::string buff = message + "\r\n";
+    ft_log(buff);
+    if(send(m_fd, buff.c_str(), buff.length(), 0) < 0)
+     {
+        throw std::runtime_error("Cannnot send message to the client");
+     }
+}
+
+void Client::reply(const std::string& message)
+{
+    write(":" + GetPrefix() + " " + message);
+
 }
 
 void Client::ReciveMessage(std::string message)
