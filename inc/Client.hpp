@@ -50,23 +50,23 @@ class Client
     // it should be implemented with chanell class
     void JoinChanel(Channel* channel);
     void LeaveChannel(Channel* channel);
-    void SendMessage(std::string message);
+  //  void SendMessage(std::string message);
     void ReciveMessage(std::string message);
     void reply(const std::string &message);
     void write(const std::string &message);
-    
+    void welcome();
     
     
     private: // or can be pribate
-        Channel*    m_channel; 
-        std::string m_nickname;
-        std::string m_username;
-        std::string m_realname;
-        std::string m_hostname;
-        int         m_fd;
+        Channel*    m_channel; //+
+        std::string m_nickname;//+
+        std::string m_username; //+
+        std::string m_realname;//+
+        std::string m_hostname; //+
+        int         m_fd; //+
         int         m_socket; // still don't know why ?
-        int         m_port;
-        ClientState m_state;
+        int         m_port;//+
+        ClientState m_state; //+
         std::vector <Client*> m_clients;
 
 };

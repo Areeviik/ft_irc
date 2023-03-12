@@ -85,13 +85,36 @@ int Client::GetPort() const
 //Functions related to Chanel
 void Client::JoinChanel(Channel* channel)
 {
+    channel->AddClient(this);
+    m_channel = channel;
+
+    std::string users;
+    std::vector<std::string> nicknames = channel->GetNicknames();
+
+    for (std::vector<std::string>::iterator it = nicknames.begin();
+    it != nicknames.end(); it++)
+    {
+        users.append(*it + "");        
+    }
+    reply(RPL_NAMREPLY(m_nickname, channel->GetName(),users));
+    reply(RPL_ENDOFNAMES(m_nickname, channel->GetName()));
+    m_channel->BroadcastMessage(RPL_JOIN(GetPrefix(), channel->GetName()));
     //impl later   
 }
 
 void Client::LeaveChannel(Channel* channel)
 {
-    //impl later
+    //impl of to leave channel
+    if(!m_channel)
+        return;
+    const std::string ch_name = m_channel->GetName();
+    m_channel->BroadcastMessage(RPL_PART(GetPrefix(), m_channel->GetName()));
+    m_channel->RemoveClient(this);
 
+    char msg[100];
+    sprintf(msg, "%s has left channel %s",
+            m_nickname.c_str(), ch_name.c_str());
+    ft_log(msg);
 }
 
 void Client::write(const std::string& message) //it should be renamed to write
@@ -108,12 +131,26 @@ void Client::write(const std::string& message) //it should be renamed to write
 void Client::reply(const std::string& message)
 {
     write(":" + GetPrefix() + " " + message);
-
 }
 
 void Client::ReciveMessage(std::string message)
 {
     //impl later
+}
+
+void Client::welcome()
+{
+    if(m_state != LOGIN || m_nickname.empty() || m_realname.empty()
+       || m_username.empty())
+       {
+        return;
+       }   
+    m_state = REGISTERED;
+    reply(RPL_WELCOME(m_nickname));
+
+    char msg[100];
+    sprintf(msg, "%s:%d is now known as %s",
+    m_hostname.c_str(), m_port, m_nickname.c_str());
 }
 
 

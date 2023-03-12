@@ -89,7 +89,7 @@ void Channel::BroadcastMessage(const std::string& message)
     for(std::vector<Client*>::iterator it = m_clients.begin();
         it != m_clients.end();
         it++)
-        (*it)->SendMessage(message);
+        (*it)->write(message);
 }
 
 void Channel::BrodcastMessage(const std::string& message, Client *client )
