@@ -6,17 +6,17 @@ NickCommand::~NickCommand() {}
 
 void NickCommand::exec(Client *client, std::vector<std::string> args)
 {
-    std::string nick = args[0];
-    if (args.empty())
+    if (args.empty()  || args[0].empty())
     {
-        client->reply(ERR_NONICKNAMEGIVEN(client->getNickname()));
+        client->reply(ERR_NONICKNAMEGIVEN(client->GetNickname()));
         return;
     }
+    std::string nick = args[0];
     if (_server->getCLient(nick))
     {
-        client->reply(ERR_NICKNAMEINUSE(client->getNickname()));
+        client->reply(ERR_NICKNAMEINUSE(client->GetNickname()));
         return;
     }
-    client->setNickname(nick);
+    client->SetNickname(nick);
     client->welcome();
 }

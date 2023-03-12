@@ -18,5 +18,10 @@
 #define ERR_ALREADYREGISTERED(src) "462 " + src + " ~User already registered!"
 #define ERR_PASSWDMISMATCH(src) "464 " + src + " ~Incorrect password!"
 #define RPL_PING(src, token) ":" + src + " PONG :" + token
+#define ERR_NOTONCHANNEL(src, channel) "442 " + src + " " + channel + " ~You're not on that channel"
+#define ERR_CHANOPRIVSNEEDED(src, channel) "482 " + src + " " + channel + " ~You're not channel admin"
+#define RPL_MODE(src, channel, modes, args) ":" + src + " MODE " + channel + " " + modes + " " + args
+#define ERR_NOTREGISTERED(src) "451 " + src + " ~You haven't registered yet :("
+#define ERR_UNKNOWNCOMMAND(src, cmd) "421 " + src + " " + cmd + " ~Unknown command"
 
 #endif

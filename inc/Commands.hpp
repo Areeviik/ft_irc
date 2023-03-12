@@ -1,10 +1,13 @@
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
 
+class Command;
 #include "../utils/Errors.hpp"
-// include Server,client and channel
+#include "./Client.hpp"
+// include Server
 #include <string>
 #include <vector>
+#include "./Channel.hpp"
 
 class Command
 {
@@ -42,7 +45,7 @@ class QuitCommand : public Command
 public:
     QuitCommand(Server *server, bool auth);
     ~QuitCommand();
-    void exec(Cliet *client, std::vector<std::string> args);
+    void exec(Client *client, std::vector<std::string> args);
 };
 
 class NickCommand : public Command
@@ -99,7 +102,7 @@ public:
     void exec(Client *client, std::vector<std::string> args);
 };
 
-class KickCommand: public Command
+class KickCommand : public Command
 {
 public:
     KickCommand(Server *server);
@@ -113,6 +116,15 @@ class PartCommand : public Command
 public:
     PartCommand(Server *server);
     ~PartCommand();
+
+    void exec(Client *client, std::vector<std::string> args);
+};
+
+class NoticeCommand : public Command
+{
+public:
+    NoticeCommand(Server *server);
+    ~NoticeCommand();
 
     void exec(Client *client, std::vector<std::string> args);
 };

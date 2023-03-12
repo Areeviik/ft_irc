@@ -8,16 +8,16 @@ void UserCommand::exec(Client *client, std::vector<std::string> args)
 {
     if (client->isRegistered())
     {
-        client->reply(ERR_ALREADYREGISTERED(client->getNickname()));
+        client->reply(ERR_ALREADYREGISTERED(client->GetNickname()));
         return;
     }
 
     if (args.size() != 4)
     {
-        client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "USER"));
+        client->reply(ERR_NEEDMOREPARAMS(client->GetNickname(), "USER"));
         return;
     }
-    client->setNickname(args[0]);
-    client->setRealName(args[3]);
+    client->SetNickname(args[0]);
+    client->SetRealname(args[3]);
     client->welcome();
 }

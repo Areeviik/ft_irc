@@ -7,8 +7,8 @@ void PingCommand::exec(Client *client, std::vector<std::string> args)
 {
     if (args.empty())
     {
-        client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "PING"));
+        client->reply(ERR_NEEDMOREPARAMS(client->GetNickname(), "PING"));
         return;
     }
-    client->write(RPL_PING(client->getPrefix(), args.at(0)));
+    client->write(RPL_PING(client->GetPrefix(), args.at(0)));
 }

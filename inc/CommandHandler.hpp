@@ -1,12 +1,14 @@
 #ifndef COMANDHANDLER_HPP
 #define COMMANDHANDLER_HPP
 
+class CommandHandler;
 #include "Commands.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
 #include <map>
-//include Server
+#include <sstream>
+// include Server
 
 class CommandHandler
 {
@@ -17,7 +19,7 @@ private:
 public:
     CommandHandler(Server *server);
     ~CommandHandler();
-    void parser(Client *client, const std::string &msg);
-}
+    void parser(Client *client, const std::string& msg);
+};
 
 #endif

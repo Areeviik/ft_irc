@@ -8,34 +8,38 @@ void JoinCommand::exec(Client *client, std::vector<std::string> args)
 {
     if (args.empty())
     {
-        client->reply(ERR_NEEDMOREPARAMS(client->getNickname(), "PASS"));
+        client->reply(ERR_NEEDMOREPARAMS(client->GetNickname(), "PASS"));
         return;
     }
 
-    std::string name = args[0];
-    std::string pass = args[1];
-
-    Channel *channel = client->getChannel();
-    if (channel)
+    std::string channelName = args[0];
+    std::string pass;
+    if (args.size() > 1)
+        pass = args[1];
+    else
+        pass = "";
+    Channel *channel = _server->getChannel(channelName);
+    if (client->getChannel())
     {
-        client->reply(ERR_TOOMANYCHANNELS(client->getNickname(), name));
+        client->reply(ERR_TOOMANYCHANNELS(client->GetNickname(), channelName));
         return;
     }
-    channel = _server->getChannel(name);
     if (!channel)
-        channel = _server->createChannel(name, pass, client);
+        channel = _server->createChannel(channelName, pass, client);
 
-    if (channel->maxClients() > 0 && channel->numofClients() >= channel->maxClients())
+    if (channel->GetMaxClients() > 0 && channel->GetNumberOfClients() >= channel->GetMaxClients())
     {
-        client->reply(ERR_CHANNELISFULL(client->getNickname(), name));
+        client->reply(ERR_CHANNELISFULL(client->GetNickname(), channelName));
         return;
     }
 
-    if (channel->getPass() != pass)
+    if (channel->GetPassword() != pass)
     {
-        client->reply(ERR_BADCHANNELKEY(client->getNickname(), name));
+        client->reply(ERR_BADCHANNELKEY(client->GetNickname(), channelName));
         return;
     }
 
-    client->join(channel);
+    client->JoinChanel(channel);
 }
+
+// missing getChannel from CLient
