@@ -5,6 +5,7 @@ class Command;
 #include "../utils/Errors.hpp"
 #include "./Client.hpp"
 // include Server
+#include "../server.hpp"
 #include <string>
 #include <vector>
 #include "./Channel.hpp"

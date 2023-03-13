@@ -36,7 +36,7 @@ Client *Server::getClient(const string& nickname) {
     for (map<int, Client*>::iterator it = _clients.begin();
                                 it != _clients.end(); it++)
     {
-        if (!nickname.compare(it->second->getNickname()))
+        if (!nickname.compare(it->second->GetNickname()))
             return it->second;
     }
     return nullptr;
@@ -46,7 +46,7 @@ Channel *Server::getChannel(const string& name) {
     for (vector<Channel*>::iterator it = _channels.begin();
                                 it != _channels.end(); it++)
     {
-        if (it.operator*()->getName() == name)
+        if (it.operator*()->GetName() == name)
             return it.operator*();
     }
     return nullptr;
@@ -175,9 +175,9 @@ void Server::onClientDisconnect(int fd)
     try
     {
         Client *client = _clients.at(fd);
-        client->leave();
+        client->LeaveChannel();
         char message[1000];
-        sprintf(message, "%s:%d has disconnected.", client->getHostname().c_str(), client->getPort());
+        sprintf(message, "%s:%d has disconnected.", client->GetHostname().c_str(), client->GetPort());
         ft_log(message);
 
         _clients.erase(fd);
@@ -215,7 +215,7 @@ void Server::onClientConnect()
     _clients.insert(make_pair(fd, client));
 
     char message[1000];
-    sprintf(message, "%s:%d has connected.", client->getHostname().c_str(), client->getPort());
+    sprintf(message, "%s:%d has connected.", client->GetHostname().c_str(), client->GetPort());
     ft_log(message);
 }
 
@@ -224,7 +224,7 @@ void Server::onClientMessage(int fd)
     try
     {
         Client *client = _clients.at(fd);
-        _commandHandler->invoke(client, readMessage(fd));
+        _commandHandler->parser(client, readMessage(fd));
     }
     catch(const out_of_range& e)
     {

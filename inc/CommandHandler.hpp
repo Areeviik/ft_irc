@@ -8,7 +8,7 @@ class CommandHandler;
 #include <string>
 #include <map>
 #include <sstream>
-// include Server
+#include "../server.hpp"
 
 class CommandHandler
 {

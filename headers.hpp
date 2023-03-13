@@ -44,5 +44,7 @@ using namespace std;
 // #include "client.hpp"
 // #include "chanel.hpp"
 // #include "commandhandler.hpp"
-
+#include "./inc/Client.hpp"
+#include "./inc/Channel.hpp"
+#include "./inc/CommandHandler.hpp"
 #endif

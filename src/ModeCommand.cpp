@@ -1,4 +1,4 @@
-#include "Commands.hpp"
+#include "../inc/Commands.hpp"
 
 ModeCommand::ModeCommand(Server *server) : Command(server) {}
 ModeCommand::~ModeCommand() {}
@@ -60,6 +60,6 @@ void ModeCommand::exec(Client *client, std::vector<std::string> args)
     }
 }
 
-//don't understand the broadcast and brodcast funs dif
+// don't understand the broadcast and brodcast funs dif
 
-//getchannel from clinet and channels getadmin missing
+// getchannel from clinet and channels getadmin missing

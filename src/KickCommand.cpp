@@ -1,4 +1,4 @@
-#include "Commands.hpp"
+#include "../inc/Commands.hpp"
 
 KickCommand::KickCommand(Server *Server) : Command(server) {}
 KickCommand::~KickCommand() {}
@@ -42,5 +42,5 @@ void KickCommand::exec(Client *client, std::vector<std::string> args)
 
     channel->Kick(client, ordinaryCLient, reason);
 
-    //missing client's getChannel and channel's getAdmin fns
+    // missing client's getChannel and channel's getAdmin fns
 }

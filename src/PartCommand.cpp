@@ -1,7 +1,6 @@
-#include "Commands.hpp"
+#include "../inc/Commands.hpp"
 
 PartCommand::PartCommand(Server *server) : Command(server) {}
-
 PartCommand::~PartCommand() {}
 
 void PartCommand::exec(Client *client, std::vector<std::string> args)
@@ -28,4 +27,4 @@ void PartCommand::exec(Client *client, std::vector<std::string> args)
 
     client->LeaveChannel(channel);
 }
-//missing client's getChannel
+// missing client's getChannel
