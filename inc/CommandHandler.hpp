@@ -19,7 +19,8 @@ private:
 public:
     CommandHandler(Server *server);
     ~CommandHandler();
-    void parser(Client *client, const std::string& msg);
+    void parser(Client *client, const std::string &msg);
+    std::string trim(const std::string &str);
 };
 
 #endif
