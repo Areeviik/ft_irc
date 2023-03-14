@@ -27,7 +27,6 @@ class Server {
         vector<Channel *> _channels;
         CommandHandler *_commandHandler;
 		vector<User*>			_users;
-		vector<Channel*>		_channels;
 
         void					setServinfo( void );
 		int						setSocket( struct addrinfo * p );
