@@ -1,10 +1,13 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
 
+class Server;
 # include "headers.hpp"
+# include "./inc/Client.hpp"
+# include "./inc/Channel.hpp"
+# include "./inc/CommandHandler.hpp"
 
 //server class
-class Server;
 
 class Server {
 

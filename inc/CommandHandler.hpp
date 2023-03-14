@@ -1,4 +1,4 @@
-#ifndef COMANDHANDLER_HPP
+#ifndef COMMANDHANDLER_HPP
 #define COMMANDHANDLER_HPP
 
 class CommandHandler;

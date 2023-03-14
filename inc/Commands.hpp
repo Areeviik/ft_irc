@@ -16,13 +16,12 @@ private:
 protected:
     Server *_server;
     bool _auth;
-
 public:
-    explicit Command(Server *server, bool auth = true) : _server(server), _auth(auth){};
-    virtual ~Command(){};
+    explicit Command(Server *server, bool auth = true) : _server(server), _auth(auth) {}
+    virtual ~Command() {}
 
+    bool authRequired() const { return _auth; }
     virtual void exec(Client *client, std::vector<std::string> args) = 0;
-    bool authRequired() const { return _auth; };
 };
 
 class PrivMsgCommand : public Command
